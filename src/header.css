@@ -1,0 +1,53 @@
+.navbar {
+  height: 10vh;
+  width: 100wh;
+  background-color: rgb(3, 3, 3);
+  display: flex;
+  justify-content: space-evenly;
+}
+.searchbar {
+  height: 7vh;
+  margin: auto;
+  margin-right: 50vh;
+  display: flex;
+  justify-content: space-evenly;
+  width: 52vh;
+}
+.search {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  border-radius: 3px 0px 0px 3px;
+  background-color: rgb(255, 255, 255);
+}
+.go {
+  height: 80%;
+  width: 20%;
+  margin: auto;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  background-color: rgb(238, 208, 36);
+}
+.go:hover {
+  background-color: rgb(194, 181, 0);
+}
+.logo {
+  margin: auto;
+  margin-left: 5vh;
+  margin-top: 13px;
+}
+.logo img {
+  height: 7vh;
+  width: 20vh;
+}
+.links {
+  height: 10vh;
+  width: 20vh;
+  background-color: brown;
+}
+
+.basket {
+  height: 10vh;
+  width: 20vh;
+  background-color: rgb(131, 102, 102);
+}
