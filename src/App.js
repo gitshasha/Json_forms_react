@@ -1,25 +1,57 @@
 import "./App.css";
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "./Header";
+import React, { useEffect, useState } from "react";
+import Home from "./Components/Home";
+import formJSON from "./Formdetails.json";
+import { FormContext } from "./FormContext";
 function App() {
+  const [formdetails, setformdetails] = useState([]);
+  useEffect(() => {
+    setformdetails(formJSON[0]);
+  }, []);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log(formdetails);
+  };
+  const { fields, page_label } = formdetails ?? {};
+  const handleChange = (id, event) => {
+    const newElements = { ...formdetails };
+    newElements.fields.forEach((field) => {
+      const { field_type, field_id } = field;
+      if (id === field_id) {
+        switch (field_type) {
+          case "checkbox":
+            field["field_value"] = event.target.checked;
+            break;
+
+          default:
+            field["field_value"] = event.target.value;
+            break;
+        }
+      }
+      setformdetails(newElements);
+    });
+    console.log(formdetails);
+  };
+
   return (
-    <Router>
+    <FormContext.Provider value={{ handleChange }}>
       <div className="app">
-        <Switch>
-          <Route path="/checkout">
-            <h1>HELO CHACKOT</h1>
-          </Route>
-          <Route path="/login">
-            <h1>HELo LOGUT</h1>
-          </Route>
-          <Route path="/">
-            <Header />
-            <h1>HELO HUM</h1>
-          </Route>
-        </Switch>
+        {fields &&
+          fields.map((details, index) => (
+            <div>
+              <Home fields={details} />
+            </div>
+          ))}
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={(e) => handleSubmit(e)}
+        >
+          Submit
+        </button>{" "}
       </div>
-    </Router>
+    </FormContext.Provider>
   );
 }
 
