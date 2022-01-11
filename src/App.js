@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Home from "./Components/Home";
 import formJSON from "./Formdetails.json";
 import { FormContext } from "./FormContext";
+import axios from "axios";
 function App() {
   const [formdetails, setformdetails] = useState([]);
   useEffect(() => {
@@ -10,7 +11,7 @@ function App() {
   }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    axios.post("http://localhost:5000/posts", formdetails);
     console.log(formdetails);
   };
   const { fields, page_label } = formdetails ?? {};
