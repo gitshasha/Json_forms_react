@@ -1,17 +1,11 @@
 import React, { useState, useContext } from "react";
 import "../Styles/Fields.css";
 import { FormContext } from "../FormContext";
-// import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 
+//Text Field component
+//Renders for every Text field in json file
 function Text({ field_id, field_label, field_placeholder, field_value }) {
-  const { handleChange } = useContext(FormContext);
-  const [text, settext] = useState("");
-
-  function handler(e) {
-    settext(e.target.value);
-
-    console.log(e.target.value, field_value);
-  }
+  const { handleChange } = useContext(FormContext); //The handler function which we import from App.js
 
   return (
     <div className="form-group">
@@ -21,8 +15,8 @@ function Text({ field_id, field_label, field_placeholder, field_value }) {
         className="form-control"
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
-        onChange={(event) => handleChange(field_id, event)}
-        value={field_value}
+        onChange={(event) => handleChange(field_id, event)} //Updates field_value
+        value={field_value} //Displays the value of field_value
         placeholder={field_placeholder}
       />
       <small id="emailHelp" className="form-text text-muted">
@@ -31,7 +25,8 @@ function Text({ field_id, field_label, field_placeholder, field_value }) {
     </div>
   );
 }
-
+//password Field component
+//Renders for every password field in json file
 function Password({
   field_id,
   field_label,
@@ -39,17 +34,20 @@ function Password({
   field_value,
   field_options,
 }) {
-  const [password, setpassword] = useState("");
-  const [passstatus, setpassstatus] = useState(false);
   const { handleChange } = useContext(FormContext);
-  var s = "";
-  function handler(e) {
-    setpassword(e.target.value);
-    s += e.target.value;
+  //The below lines are not used
+  //But incase if we have to check for password conditions we can use the following
+  // const [password, setpassword] = useState("");
+  // const [passstatus, setpassstatus] = useState(false);
 
-    var p = /\d/g;
-    setpassstatus(p.test(s) && /[A-Z]/.test(s) && s.length >= 8);
-  }
+  // var s = "";
+  // function handler(e) {
+  //   setpassword(e.target.value);
+  //   s += e.target.value;
+
+  //   var p = /\d/g;
+  //   setpassstatus(p.test(s) && /[A-Z]/.test(s) && s.length >= 8);
+  // }
 
   return (
     <div className="pass">
@@ -69,7 +67,8 @@ function Password({
     </div>
   );
 }
-
+//Checkbox component
+//renders for evaery Checkbox type in json file
 function Checkbox({ field_id, field_label, field_value }) {
   const { handleChange } = useContext(FormContext);
   return (
@@ -89,7 +88,8 @@ function Checkbox({ field_id, field_label, field_value }) {
     </div>
   );
 }
-
+//Select Field component
+//Renders for every select field in json file
 function Select({
   field_id,
   field_label,
@@ -120,108 +120,3 @@ function Select({
 }
 
 export { Text, Password, Checkbox, Select };
-
-// function Countrystates() {
-//   const [count, setcount] = useState("");
-//   const [state, setstate] = useState("");
-//   function handler(e) {
-//     setcount(e);
-//   }
-//   function handlerstate(e) {
-//     setstate(e);
-//   }
-//   return (
-//     <div>
-//       <CountryDropdown value={count} onChange={handler} />
-//       <RegionDropdown country={count} value={state} onChange={handlerstate} />
-//     </div>
-//   );
-// }
-
-// function Checkbox() {
-//   const [check, setcheck] = useState(true);
-//   function handler(e) {
-//     setcheck(e.target.checked);
-//     console.log(check);
-//   }
-//   return (
-//     <div>
-//       <label htmlFor="">
-//         <input type="checkbox" onChange={handler} name="boy" checked={check} />
-//         Boy
-//       </label>
-//     </div>
-//   );
-// }
-// function Image() {
-//   const [img, setimg] = useState("");
-//   function handler(e) {
-//     setimg(e.target.files[0]);
-//     console.log(URL.createObjectURL(e.target.files[0]));
-//   }
-//   return (
-//     <div>
-//       <input type="file" accept="image/*" onChange={handler} />
-//     </div>
-//   );
-// }
-// const Email = () => {
-//   const [email, setemail] = useState("");
-
-//   function handleChange(e) {
-//     setemail(e.target.value);
-//   }
-//   return (
-//     <div>
-//       <input
-//         id="email"
-//         name="email"
-//         type="email"
-//         onChange={handleChange}
-//         value={email}
-//       />
-//     </div>
-//   );
-// };
-// const Date = () => {
-//   const [date, setdate] = useState("");
-
-//   function handleChange(e) {
-//     setdate(e.target.value);
-//   }
-//   return (
-//     <div>
-//       <input
-//         id="date"
-//         name="date"
-//         type="date"
-//         onChange={handleChange}
-//         value={date}
-//       />
-//     </div>
-//   );
-// };
-
-// function Desc() {
-//   const [desc, setdesc] = useState("");
-
-//   function handleChange(e) {
-//     setdesc(e.target.value);
-//   }
-
-//   return (
-//     <div>
-//       <textarea
-//         rows={5}
-//         cols={30}
-//         maxLength="50"
-//         id="desc"
-//         name="desc"
-//         value={desc}
-//         onChange={handleChange}
-//       />
-//     </div>
-//   );
-// }
-
-// export { Email, Text, Password, Desc, Date, Countrystates, Checkbox, Image };

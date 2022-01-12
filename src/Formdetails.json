@@ -46,13 +46,12 @@
                 "field_value": "checked"
             },
             {
-                "field_id": "identity",
-                "field_label": "Password",
-                "field_mandatory": "yes",
-                "field_placeholder": "password",
-                "field_type": "password",
-                "field_value": ""
+                "field_id": "driving_license",
+                "field_label": "I confirm to have driving license.",
+                "field_type": "checkbox",
+                "field_value": "checked"
             }
+           
         ]
     }
 ]

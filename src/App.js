@@ -6,16 +6,20 @@ import { FormContext } from "./FormContext";
 import axios from "axios";
 function App() {
   const [formdetails, setformdetails] = useState([]);
-  const [postdata, setpostdata] = useState({});
+
   useEffect(() => {
-    setformdetails(formJSON[0]);
+    setformdetails(formJSON[0]); //storing  form details from json file
   }, []);
   const handleSubmit = (event) => {
+    //executes when the form is submitted
     event.preventDefault();
-    axios.post("http://localhost:5000/posts", formdetails);
-    console.log(formdetails);
+    axios.post("http://localhost:5000/posts", formdetails); //posting the details to Json server
   };
-  const { fields, page_label } = formdetails ?? {};
+  //page label stores the title of the page
+  const { fields, page_label } = formdetails ?? {}; //storing the field details into fields
+  // Function to update the values of all the fields
+  //this fuction is passed to all the components
+  //It runs whenever there is a change in input fields
   const handleChange = (id, event) => {
     const newElements = { ...formdetails };
     newElements.fields.forEach((field) => {
@@ -32,7 +36,6 @@ function App() {
       }
       setformdetails(newElements);
     });
-    console.log(formdetails);
   };
 
   return (
@@ -41,14 +44,20 @@ function App() {
         <div className="title" style={{ fontSize: "2em", margin: "2vh" }}>
           {page_label}
         </div>
-        {fields &&
-          fields.map((details, index) => (
-            <div>
-              <Home fields={details} />
-            </div>
-          ))}
+        {
+          //maping through all the arrays in fields
+          //for each array in fields The component Home renders
+          //home renders a input field based on the details from Json file
+          fields &&
+            fields.map((details, index) => (
+              <div>
+                <Home fields={details} />
+              </div>
+            ))
+        }
         <button
           type="submit"
+          style={{ margin: "2vh" }}
           className="btn btn-primary"
           onClick={(e) => handleSubmit(e)}
         >

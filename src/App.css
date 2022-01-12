@@ -4,4 +4,6 @@
 }
 .app {
   width: 70vh;
+  border: 1px solid rgb(87, 87, 87);
+  border-radius: 10px;
 }

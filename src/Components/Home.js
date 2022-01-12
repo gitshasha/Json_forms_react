@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, Password, Checkbox, Select } from "./Text";
 function Home({
+  //arguments passed from App.js
   fields: {
     field_type,
     field_id,
@@ -10,6 +11,7 @@ function Home({
     field_options,
   },
 }) {
+  //for each type of field different component is rendered
   switch (field_type) {
     case "text":
       return (
