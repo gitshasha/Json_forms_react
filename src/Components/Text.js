@@ -14,18 +14,20 @@ function Text({ field_id, field_label, field_placeholder, field_value }) {
   }
 
   return (
-    <div>
-      <label htmlFor={field_label}>
-        {field_label}{" "}
-        <input
-          id={field_id}
-          name="text"
-          type="text"
-          onChange={(event) => handleChange(field_id, event)}
-          value={field_value}
-          placeholder={field_placeholder}
-        />
-      </label>
+    <div className="form-group">
+      <label for="exampleInputEmail1">{field_label}</label>
+      <input
+        type="text"
+        className="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        onChange={(event) => handleChange(field_id, event)}
+        value={field_value}
+        placeholder={field_placeholder}
+      />
+      <small id="emailHelp" className="form-text text-muted">
+        We'll never share your {field_label} with anyone else.
+      </small>
     </div>
   );
 }
@@ -37,25 +39,87 @@ function Password({
   field_value,
   field_options,
 }) {
+  const [password, setpassword] = useState("");
+  const [passstatus, setpassstatus] = useState(false);
   const { handleChange } = useContext(FormContext);
+  var s = "";
+  function handler(e) {
+    setpassword(e.target.value);
+    s += e.target.value;
+
+    var p = /\d/g;
+    setpassstatus(p.test(s) && /[A-Z]/.test(s) && s.length >= 8);
+  }
 
   return (
     <div className="pass">
-      <label htmlFor="password">
-        {field_label}
+      <div className="form-group">
+        <label for="exampleInputPassword1">{field_label}</label>
         <input
-          id={field_id}
-          name={field_id}
           type="password"
-          onChange={(event) => handleChange(field_id, event)}
+          className="form-control"
+          id="exampleInputPassword1"
+          onChange={(event) => {
+            handleChange(field_id, event);
+          }}
           value={field_value}
           placeholder={field_placeholder}
         />
+      </div>
+    </div>
+  );
+}
+
+function Checkbox({ field_id, field_label, field_value }) {
+  const { handleChange } = useContext(FormContext);
+  return (
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="checkbox"
+        value={field_value}
+        id="defaultCheck1"
+        onChange={(event) => {
+          handleChange(field_id, event);
+        }}
+      />
+      <label className="form-check-label" for="defaultCheck1">
+        {field_label}
       </label>
     </div>
   );
 }
-export { Text, Password };
+
+function Select({
+  field_id,
+  field_label,
+  field_placeholder,
+  field_value,
+  field_options,
+}) {
+  const { handleChange } = useContext(FormContext);
+  return (
+    <>
+      {" "}
+      <label className="form-label">{field_label}</label>
+      <select
+        className="form-control"
+        aria-label="Default select example"
+        onChange={(event) => handleChange(field_id, event)}
+      >
+        <option>Open this select menu</option>
+        {field_options.length > 0 &&
+          field_options.map((option, i) => (
+            <option value={option.option_label} key={i}>
+              {option.option_label}
+            </option>
+          ))}
+      </select>
+    </>
+  );
+}
+
+export { Text, Password, Checkbox, Select };
 
 // function Countrystates() {
 //   const [count, setcount] = useState("");

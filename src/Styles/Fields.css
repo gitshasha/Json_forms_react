@@ -1,0 +1,29 @@
+.passrules {
+  height: 12vh;
+  width: 10vw;
+  font-size: 0.8em;
+}
+#password {
+  height: 5vh;
+  width: 45%;
+}
+.pass {
+  display: flex;
+  width: 30vw;
+}
+.Text {
+  height: 10vh;
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: 1.2em;
+  width: 35vh;
+  background: aqua;
+
+  margin: 1vh;
+}
+.Text label input {
+  height: 5vh;
+  font-size: 0.8em;
+  font-family: sans-serif;
+  outline: none;
+}

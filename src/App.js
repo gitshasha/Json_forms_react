@@ -6,6 +6,7 @@ import { FormContext } from "./FormContext";
 import axios from "axios";
 function App() {
   const [formdetails, setformdetails] = useState([]);
+  const [postdata, setpostdata] = useState({});
   useEffect(() => {
     setformdetails(formJSON[0]);
   }, []);
@@ -24,7 +25,6 @@ function App() {
           case "checkbox":
             field["field_value"] = event.target.checked;
             break;
-
           default:
             field["field_value"] = event.target.value;
             break;
@@ -37,7 +37,10 @@ function App() {
 
   return (
     <FormContext.Provider value={{ handleChange }}>
-      <div className="app">
+      <div className="app  container">
+        <div className="title" style={{ fontSize: "2em", margin: "2vh" }}>
+          {page_label}
+        </div>
         {fields &&
           fields.map((details, index) => (
             <div>
