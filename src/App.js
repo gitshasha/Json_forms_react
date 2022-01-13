@@ -4,17 +4,14 @@ import Home from "./Components/Home";
 import formJSON from "./Formdetails.json";
 import { FormContext } from "./FormContext";
 import axios from "axios";
+
 function App() {
   const [formdetails, setformdetails] = useState([]);
 
   useEffect(() => {
     setformdetails(formJSON[0]); //storing  form details from json file
   }, []);
-  const handleSubmit = (event) => {
-    //executes when the form is submitted
-    event.preventDefault();
-    axios.post("http://localhost:5000/posts", formdetails); //posting the details to Json server
-  };
+
   //page label stores the title of the page
   const { fields, page_label } = formdetails ?? {}; //storing the field details into fields
   // Function to update the values of all the fields
@@ -28,6 +25,11 @@ function App() {
         switch (field_type) {
           case "checkbox":
             field["field_value"] = event.target.checked;
+            break;
+          case "button":
+            event.preventDefault();
+            axios.post("http://localhost:5000/posts", formdetails);
+            console.log("HELLO") //posting the details to Json server
             break;
           default:
             field["field_value"] = event.target.value;
@@ -55,14 +57,6 @@ function App() {
               </div>
             ))
         }
-        <button
-          type="submit"
-          style={{ margin: "2vh" }}
-          className="btn btn-primary"
-          onClick={(e) => handleSubmit(e)}
-        >
-          Submit
-        </button>{" "}
       </div>
     </FormContext.Provider>
   );

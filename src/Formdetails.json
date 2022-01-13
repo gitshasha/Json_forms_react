@@ -46,6 +46,12 @@
                 "field_value": "checked"
             },
             {
+                "field_id": "SUBMIT",
+                "field_label": "confirm",
+                "field_type": "button",
+                "field_value": "Submit"
+            },
+            {
                 "field_id": "driving_license",
                 "field_label": "I confirm to have driving license.",
                 "field_type": "checkbox",

@@ -1,5 +1,9 @@
 import React from "react";
-import { Text, Password, Checkbox, Select } from "./Text";
+import Text from "./Inputfields/Text";
+import Checkbox from "./Inputfields/Checkbox";
+import Password from "./Inputfields/Password";
+import Select from "./Inputfields/Select";
+import Button from "./Inputfields/Button";
 function Home({
   //arguments passed from App.js
   fields: {
@@ -30,6 +34,15 @@ function Home({
           field_placeholder={field_placeholder}
           field_value={field_value}
           field_options={field_options}
+        />
+      );
+    case "button":
+      return (
+        <Button
+          field_id={field_id}
+          field_label={field_label}
+          field_placeholder={field_placeholder}
+          field_value={field_value}
         />
       );
     case "select":
